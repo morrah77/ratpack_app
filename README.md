@@ -16,8 +16,6 @@ A simplest backend application that provides some REST endpoints - just to take 
 
 /spend - a POST request that accepts an Authorization header (with the token value output from /login), JSON content representing one spend transaction with the transaction date, description, amount, currency.
 
-There is a Postman collection at Interviewer.postman_collection.json that you can use to test your API implementation.
-
 ##Technology stack
 
 Ratpack framework is used for web server application. Redis is used as the datastore.
@@ -26,7 +24,7 @@ Spring DI or spring components are not used, Guice used for DI instead.
 
 Basic Docker capability is added just for conveniency.
 
-Provide an accessible kubernetes service and instructions for access
+TODO: add Kubernetes abilities
 
 #Results
 
