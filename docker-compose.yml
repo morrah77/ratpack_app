@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  ratpack_app-server:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: ratpack_app-server
+    ports:
+    - 8080:5050
+    volumes:
+    - $APP_CONFIG_VOLUME/config.yml:/app/bin/ratpack_app/app-config.yml
+
+  ratpack_app-redis:
+    image: redis:6.0.6
+    command: "redis-server --appendonly yes"
+    volumes:
+    - $REDIS_VOLUME/data:/data
+    - $REDIS_VOLUME/conf/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+    - 6379:6379
+
+networks:
+  ratpack_app
+
+c
+volumes:
+  config:
