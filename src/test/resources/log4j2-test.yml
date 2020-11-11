@@ -1,0 +1,42 @@
+Configuration:
+  status: debug
+  name: main
+  properties:
+    property:
+      name: filename
+      value: target/ratpack_app-test.log
+  thresholdFilter:
+    level: debug
+  appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%m%n"
+    File:
+      name: File
+      fileName: ${filename}
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+      Filters:
+        ThresholdFilter:
+          level: error
+
+  Loggers:
+    logger:
+      -
+        name: ratpack_app.handlers.endpoints.Balance
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+      -
+        name: ratpack_app.services.BalanceService
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+    Root:
+      level: debug
+      AppenderRef:
+        ref: STDOUT

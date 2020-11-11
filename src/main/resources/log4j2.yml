@@ -1,0 +1,72 @@
+Configuration:
+  status: warn
+  name: main
+  properties:
+    property:
+      name: filename
+      value: target/ratpack_app.log
+  thresholdFilter:
+    level: debug
+  appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+    File:
+      name: File
+      fileName: ${filename}
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+      Filters:
+        ThresholdFilter:
+          level: error
+
+  Loggers:
+    logger:
+      -
+        name: ratpack_app.handlers.endpoints.Balance
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+          level: debug
+      -
+        name: ratpack_app.handlers.endpoints.Transaction
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+          level: debug
+      -
+        name: ratpack_app.handlers.endpoints.TransactionList
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+          level: debug
+      -
+        name: ratpack_app.services.TransactionService
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+          level: debug
+      -
+        name: ratpack_app.services.BalanceService
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+          level: debug
+      -
+        name: ratpack_app.repositories.DataRepository
+        level: debug
+        additivity: false
+        AppenderRef:
+          ref: STDOUT
+          level: debug
+    Root:
+      level: warn
+      AppenderRef:
+        ref: STDOUT
